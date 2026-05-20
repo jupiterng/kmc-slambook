@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>KMC Brand Persona Slambook</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{--ink:#0f0f0f;--paper:#f5f2ec;--gold:#b8955a;--gold-light:#d4b483;--slate:#1e2533;--muted:#7a7a7a;--rule:#e0d9ce;--wh:#ffffff;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;color:var(--ink);font-size:13px;background:var(--paper);min-height:100vh;}
+.cover{background:var(--slate);padding:48px 32px;text-align:center;position:relative;overflow:hidden;}
+.cover::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(184,149,90,0.07) 1px,transparent 1px),linear-gradient(90deg,rgba(184,149,90,0.07) 1px,transparent 1px);background-size:48px 48px;}
+.cover-inner{position:relative;z-index:1;}
+.cover-rule{width:60px;height:1px;background:var(--gold);margin:0 auto 14px;}
+.cover-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:4px;color:var(--gold-light);text-transform:uppercase;margin-bottom:10px;}
+.cover-title{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:300;color:#fff;line-height:1.05;margin-bottom:8px;}
+.cover-title em{font-style:italic;color:var(--gold-light);}
+.cover-sub{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:20px;}
+.cover-desc{font-size:12px;color:rgba(255,255,255,0.5);max-width:400px;margin:0 auto;line-height:1.7;font-weight:300;}
+.auth-bar{background:var(--wh);border-bottom:1px solid var(--rule);padding:10px 24px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:100;}
+.auth-status{font-size:12px;color:var(--muted);flex:1;}
+.auth-status strong{color:var(--slate);}
+.msft-btn{display:flex;align-items:center;gap:6px;background:var(--slate);border:none;color:#fff;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:9px 16px;cursor:pointer;transition:opacity .2s;white-space:nowrap;}
+.msft-btn:hover{opacity:.85;}
+.msft-btn.connected{background:#2a7a4b;}
+.instrs{max-width:640px;margin:0 auto;padding:32px 24px 0;}
+.eyebrow{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.instrs h2{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:300;color:var(--slate);margin-bottom:10px;}
+.instrs h2 em{font-style:italic;color:var(--gold);}
+.instrs p{font-size:13px;line-height:1.8;color:#555;font-weight:300;margin-bottom:8px;}
+.igrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin:16px 0 0;}
+.icell{background:var(--wh);padding:14px;}
+.inum{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--rule);line-height:1;margin-bottom:5px;}
+.icell h4{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--slate);margin-bottom:3px;}
+.icell p{font-size:11px;color:var(--muted);line-height:1.6;}
+.fwrap{max-width:640px;margin:0 auto;padding:28px 24px 60px;}
+.qb{margin-bottom:22px;}
+.qn{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
+.ql{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:400;color:var(--slate);margin-bottom:2px;line-height:1.3;}
+.qh{font-size:11px;color:var(--muted);margin-bottom:7px;line-height:1.6;font-weight:300;}
+input[type=text],input[type=email],textarea{width:100%;padding:9px 13px;border:1px solid var(--rule);background:var(--wh);font-family:'DM Sans',sans-serif;font-size:13px;color:var(--ink);outline:none;transition:border-color .2s;border-radius:0;}
+input[type=text]:focus,input[type=email]:focus,textarea:focus{border-color:var(--gold);}
+textarea{resize:vertical;min-height:64px;line-height:1.7;}
+input.sm{max-width:260px;}
+.tg{display:flex;flex-wrap:wrap;gap:7px;margin-top:4px;}
+.tp{display:flex;align-items:center;border:1px solid var(--rule);}
+.to{display:flex;align-items:center;}
+.to input[type=radio]{display:none;}
+.to label{padding:6px 12px;font-size:12px;font-weight:500;cursor:pointer;background:var(--wh);transition:all .15s;color:var(--muted);white-space:nowrap;}
+.to input[type=radio]:checked+label{background:var(--slate);color:#fff;}
+.tvs{padding:0 7px;font-family:'DM Mono',monospace;font-size:9px;color:var(--rule);background:var(--paper);border-left:1px solid var(--rule);border-right:1px solid var(--rule);display:flex;align-items:center;}
+.pb{background:var(--wh);border:1px solid var(--rule);padding:11px;margin-bottom:7px;}
+.ph{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;}
+.pr{display:flex;gap:7px;align-items:flex-start;}
+.pn{font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--rule);flex-shrink:0;line-height:1.1;min-width:14px;}
+.cg{display:flex;flex-wrap:wrap;gap:7px;margin-top:4px;}
+.ci{display:flex;align-items:center;gap:5px;}
+.ci input[type=checkbox]{width:13px;height:13px;accent-color:var(--slate);flex-shrink:0;}
+.ci label{font-size:12px;color:var(--slate);cursor:pointer;}
+.qs{margin:28px 0 16px;padding-top:16px;border-top:2px solid var(--slate);}
+.qs-title{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;color:var(--slate);margin-bottom:2px;}
+.qs-title em{font-style:italic;color:var(--gold);}
+.qs-desc{font-size:12px;color:var(--muted);font-weight:300;}
+.save-bar{display:flex;align-items:center;gap:9px;margin-bottom:16px;padding:8px 12px;background:var(--wh);border:1px solid var(--rule);font-size:11px;color:var(--muted);}
+.save-dot{width:7px;height:7px;border-radius:50%;background:var(--rule);flex-shrink:0;transition:background .3s;}
+.save-dot.saved{background:#2a7a4b;}
+.save-dot.saving{background:var(--gold);}
+.clear-btn{margin-left:auto;background:none;border:none;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);cursor:pointer;padding:3px 7px;}
+.clear-btn:hover{color:#c0392b;}
+.submit-section{margin-top:28px;background:var(--wh);border:1px solid var(--rule);padding:20px;}
+.submit-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:9px;}
+.submit-note{font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:14px;}
+.submit-btn{display:block;width:100%;background:var(--slate);border:none;color:#fff;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:13px 20px;cursor:pointer;transition:opacity .2s;}
+.submit-btn:hover{opacity:.85;}
+.submit-btn:disabled{opacity:.4;cursor:not-allowed;}
+.error-box{background:#3a1a1a;border:1px solid #7a2a2a;padding:14px;margin-top:14px;font-size:12px;color:#e07070;display:none;line-height:1.6;}
+.cta{background:var(--slate);padding:28px;text-align:center;margin-top:32px;}
+.cta h3{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:#fff;margin-bottom:5px;}
+.cta h3 em{font-style:italic;color:var(--gold-light);}
+.cta p{font-size:12px;color:rgba(255,255,255,0.5);line-height:1.7;max-width:400px;margin:0 auto;}
+.cta-rule{width:50px;height:1px;background:var(--gold);margin:10px auto;}
+.ty{display:none;max-width:640px;margin:60px auto;padding:0 24px 80px;}
+.ty-box{background:var(--slate);padding:48px 36px;text-align:center;}
+.ty-rule{width:50px;height:1px;background:var(--gold);margin:0 auto 20px;}
+.ty-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:4px;color:var(--gold-light);text-transform:uppercase;margin-bottom:12px;}
+.ty-name{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--gold-light);margin-bottom:6px;}
+.ty-title{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:#fff;line-height:1.1;margin-bottom:10px;}
+.ty-title em{font-style:italic;color:var(--gold-light);}
+.ty-sub{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.8;max-width:380px;margin:0 auto 28px;}
+.ty-restart{background:none;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.5);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:9px 18px;cursor:pointer;transition:all .2s;}
+.ty-restart:hover{border-color:var(--gold);color:var(--gold-light);}
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-inner">
+    <div class="cover-rule"></div>
+    <div class="cover-label">KMC Solutions · Personal Brand</div>
+    <div class="cover-title">Brand Persona<br><em>Slambook</em></div>
+    <div class="cover-sub">LinkedIn Voice Questionnaire</div>
+    <div class="cover-desc">Fill this out honestly. Your answers become the foundation of your personal LinkedIn brand — saved directly to the KMC shared Excel tracker.</div>
+  </div>
+</div>
+
+<div class="auth-bar">
+  <div class="auth-status" id="authStatus">Sign in with your KMC Microsoft account to submit responses to the shared Excel tracker.</div>
+  <button class="msft-btn" id="authBtn" onclick="handleAuth()">⊞ Sign in with Microsoft</button>
+</div>
+
+<div id="formView">
+  <div class="instrs">
+    <div class="eyebrow">Before You Start</div>
+    <h2>This isn't a form.<br>It's a <em>mirror.</em></h2>
+    <p>The best LinkedIn content doesn't sound like marketing. It sounds like a person — a specific person with a specific point of view. This slambook is designed to surface yours.</p>
+    <div class="igrid">
+      <div class="icell"><div class="inum">01</div><h4>Be specific</h4><p>Vague answers create generic content. Real stories are your content gold.</p></div>
+      <div class="icell"><div class="inum">02</div><h4>Be honest</h4><p>Your real opinions, real failures — these are what make your brand worth following.</p></div>
+      <div class="icell"><div class="inum">03</div><h4>Auto-saved</h4><p>Your draft saves automatically as you type. Come back anytime.</p></div>
+      <div class="icell"><div class="inum">04</div><h4>Goes to Excel</h4><p>Your answers are saved directly into the KMC shared tracker on submit.</p></div>
+    </div>
+  </div>
+
+  <div class="fwrap">
+    <div class="save-bar">
+      <div class="save-dot" id="saveDot"></div>
+      <span id="saveStatus">Loading saved answers…</span>
+      <button class="clear-btn" onclick="clearAll()">Clear all</button>
+    </div>
+
+    <div class="qs"><div class="qs-title">Part 1 — <em>Who You Are</em></div><div class="qs-desc">The foundation. Your role, your title, and the one-word summary of your entire professional identity.</div></div>
+    <div class="qb"><div class="qn">Q01</div><div class="ql">Full name &amp; title</div><div class="qh">As you want it to appear publicly on LinkedIn.</div><input type="text" id="q01" placeholder="e.g. Maria Santos · VP of Marketing"/></div>
+    <div class="qb"><div class="qn">Q01b</div><div class="ql">Your KMC email address</div><div class="qh">So the Social Media Team knows whose responses these are.</div><input type="email" id="q01b" placeholder="e.g. maria.santos@kmc.solutions"/></div>
+    <div class="qb"><div class="qn">Q02</div><div class="ql">If you had to describe yourself in ONE word, what would it be?</div><div class="qh">Not your job. You. The word your closest colleagues would nod at immediately.</div><input type="text" class="sm" id="q02" placeholder="e.g. Relentless"/></div>
+    <div class="qb">
+      <div class="qn">Q03</div><div class="ql">This or That — your personality in 7 pairs</div><div class="qh">Pick the one that's more you.</div>
+      <div class="tg">
+        <div class="tp"><div class="to"><input type="radio" name="tot1" id="t1a" value="Coffee"/><label for="t1a">Coffee</label></div><div class="tvs">or</div><div class="to"><input type="radio" name="tot1" id="t1b" value="Tea"/><label for="t1b">Tea</label></div></div>
+        <div class="tp"><div class="to"><input type="radio" name="tot2" id="t2a" value="Casual"/><label for="t2a">Casual</label></div><div class="tvs">or</div><div class="to"><input type="radio" name="tot2" id="t2b" value="Formal"/><label for="t2b">Formal</label></div></div>
+        <div class="tp"><div class="to"><input type="radio" name="tot3" id="t3a" value="Serious"/><label for="t3a">Serious</label></div><div class="tvs">or</div><div class="to"><input type="radio" name="tot3" id="t3b" value="Playful"/><label for="t3b">Playful</label></div></div>
+        <div class="tp"><div class="to"><input type="radio" name="tot4" id="t4a" value="Inspirational"/><label for="t4a">Inspirational</label></div><div class="tvs">or</div><div class="to"><input type="radio" name="tot4" id="t4b" value="Straightforward"/><label for="t4b">Straightforward</label></div></div>
+        <div class="tp"><div class="to"><input type="radio" name="tot5" id="t5a" value="Storytelling"/><label for="t5a">Storytelling</label></div><div class="tvs">or</div><div class="to"><input type="radio" name="tot5" id="t5b" value="Facts &amp; Insights"/><label for="t5b">Facts &amp; Insights</label></div></div>
+        <div class="tp"><div class="to"><input type="radio" name="tot6" id="t6a" value="Big Picture"/><label for="t6a">Big Picture</label></div><div class="tvs">or</div><div class="to"><input type="radio" name="tot6" id="t6b" value="Detail-oriented"/><label for="t6b">Detail-oriented</label></div></div>
+        <div class="tp"><div class="to"><input type="radio" name="tot7" id="t7a" value="Bold Opinions"/><label for="t7a">Bold Opinions</label></div><div class="tvs">or</div><div class="to"><input type="radio" name="tot7" id="t7b" value="Safe Insights"/><label for="t7b">Safe Insights</label></div></div>
+      </div>
+    </div>
+
+    <div class="qs"><div class="qs-title">Part 2 — <em>Your Story</em></div><div class="qs-desc">The experiences that shaped who you are as a leader.</div></div>
+    <div class="qb"><div class="qn">Q04</div><div class="ql">What's the defining moment of your career so far?</div><div class="qh">A turning point, a failure, a win, or a decision that defined your path. Include who, what, when.</div><textarea id="q04" placeholder="e.g. In 2019, I had to let go of our biggest client because they were making my team miserable..."></textarea></div>
+    <div class="qb"><div class="qn">Q05</div><div class="ql">What's the best piece of advice you ever received — and who gave it to you?</div><div class="qh">This becomes your signature quote / mentoring mantra.</div><textarea id="q05" style="min-height:50px" placeholder='e.g. My first boss told me "You can be right, or you can be effective. Choose one."'></textarea></div>
+    <div class="qb"><div class="qn">Q06</div><div class="ql">What's your biggest professional lesson — the hard way?</div><div class="qh">The mistake, the miss, the thing you'd do differently.</div><textarea id="q06" placeholder="e.g. I hired for skills for years and ignored culture fit. Then I watched a brilliant team tear itself apart."></textarea></div>
+    <div class="qb"><div class="qn">Q07</div><div class="ql">What's one fun or surprising fact about you outside of work?</div><div class="qh">The things that make you a full human, not just a title.</div><input type="text" id="q07" placeholder="e.g. I've run 4 marathons, all in different countries."/></div>
+
+    <div class="qs"><div class="qs-title">Part 3 — <em>What You Think</em></div><div class="qs-desc">Your opinions, beliefs, and hot takes.</div></div>
+    <div class="qb"><div class="qn">Q08</div><div class="ql">What do you believe about your industry that most people won't say out loud?</div><div class="qh">Your "hot take." The opinion that would get some people nodding and others pushing back.</div><textarea id="q08" placeholder="e.g. Most DEI programs are theater. Real inclusion happens in hiring decisions, not workshops."></textarea></div>
+    <div class="qb"><div class="qn">Q09</div><div class="ql">What is your single deepest professional belief?</div><div class="qh">The thing you'd defend in any room.</div><textarea id="q09" style="min-height:50px" placeholder="e.g. Integrity isn't a value statement. It's every single decision you make when no one is watching."></textarea></div>
+    <div class="qb">
+      <div class="qn">Q10</div><div class="ql">What are the 5 topics you could write or speak about endlessly?</div><div class="qh">These become your content pillars.</div>
+      <div class="pb"><div class="ph">Content Pillar 01</div><div class="pr"><div class="pn">1</div><input type="text" id="p1" placeholder="Topic name + one sentence on why you own this"/></div></div>
+      <div class="pb"><div class="ph">Content Pillar 02</div><div class="pr"><div class="pn">2</div><input type="text" id="p2" placeholder="Topic name + one sentence on why you own this"/></div></div>
+      <div class="pb"><div class="ph">Content Pillar 03</div><div class="pr"><div class="pn">3</div><input type="text" id="p3" placeholder="Topic name + one sentence on why you own this"/></div></div>
+      <div class="pb"><div class="ph">Content Pillar 04</div><div class="pr"><div class="pn">4</div><input type="text" id="p4" placeholder="Topic name + one sentence on why you own this"/></div></div>
+      <div class="pb"><div class="ph">Content Pillar 05</div><div class="pr"><div class="pn">5</div><input type="text" id="p5" placeholder="Topic name + one sentence on why you own this"/></div></div>
+    </div>
+
+    <div class="qs"><div class="qs-title">Part 4 — <em>Your Audience</em></div><div class="qs-desc">Who you're writing for and what you refuse to talk about.</div></div>
+    <div class="qb"><div class="qn">Q11</div><div class="ql">Who are you talking to on LinkedIn?</div><div class="qh">Be specific — not "business leaders." Who exactly? What do they struggle with?</div><textarea id="q11" placeholder="e.g. Business owners of mid-sized companies (50–500 people) scaling for the first time..."></textarea></div>
+    <div class="qb"><div class="qn">Q12</div><div class="ql">After reading your post, what do you want someone to feel?</div><div class="qh">Not think — feel.</div><input type="text" id="q12" placeholder="e.g. Like they're capable of solving the problem they've been avoiding for months."/></div>
+    <div class="qb"><div class="qn">Q13</div><div class="ql">What will you NEVER post about?</div><div class="qh">Topics, tones, or behaviors that are off-limits for your personal brand.</div><textarea id="q13" style="min-height:50px" placeholder="e.g. Politics, competitor call-outs, personal salary or financial details."></textarea></div>
+
+    <div class="qs"><div class="qs-title">Part 5 — <em>Your Brand Voice</em></div><div class="qs-desc">How you write, what formats feel natural, and the legacy you want to leave.</div></div>
+    <div class="qb"><div class="qn">Q14</div><div class="ql">How would you describe how you naturally communicate?</div><div class="qh">Think about how you talk in a meeting or write a message to your team.</div><textarea id="q14" placeholder="e.g. I use short sentences. I ask a lot of questions. I'm direct — sometimes to a fault."></textarea></div>
+    <div class="qb">
+      <div class="qn">Q15</div><div class="ql">What content formats feel most natural to you?</div><div class="qh">Choose all that apply.</div>
+      <div class="cg">
+        <div class="ci"><input type="checkbox" id="cf1"/><label for="cf1">Short punchy takes (under 100 words)</label></div>
+        <div class="ci"><input type="checkbox" id="cf2"/><label for="cf2">Storytelling / narrative posts</label></div>
+        <div class="ci"><input type="checkbox" id="cf3"/><label for="cf3">Educational / how-to breakdowns</label></div>
+        <div class="ci"><input type="checkbox" id="cf4"/><label for="cf4">Opinionated takes / hot takes</label></div>
+        <div class="ci"><input type="checkbox" id="cf5"/><label for="cf5">Behind-the-scenes moments</label></div>
+        <div class="ci"><input type="checkbox" id="cf6"/><label for="cf6">Motivational / inspirational</label></div>
+        <div class="ci"><input type="checkbox" id="cf7"/><label for="cf7">Data / facts-led posts</label></div>
+        <div class="ci"><input type="checkbox" id="cf8"/><label for="cf8">Video scripts / podcast talking points</label></div>
+        <div class="ci"><input type="checkbox" id="cf9"/><label for="cf9">Q&amp;A / interview style</label></div>
+        <div class="ci"><input type="checkbox" id="cf10"/><label for="cf10">Thought leadership / long-form essays</label></div>
+      </div>
+    </div>
+    <div class="qb"><div class="qn">Q16</div><div class="ql">What do you want to be known for — in 10 years?</div><div class="qh">Your legacy goal. The sentence someone says about you when you leave the room.</div><textarea id="q16" style="min-height:50px" placeholder="e.g. The leader who built the most loyal team in the history of this company..."></textarea></div>
+    <div class="qb"><div class="qn">Q17</div><div class="ql">What are you most proud of — that most people don't know about?</div><div class="qh">The quiet wins. The things that didn't make a press release but meant everything to you.</div><textarea id="q17" style="min-height:50px" placeholder="e.g. I personally mentored 3 people who have since become VPs."></textarea></div>
+    <div class="qb"><div class="qn">Q18</div><div class="ql">What motivates you to come to work every single day?</div><div class="qh">Not the company's mission statement. Your actual, personal answer.</div><input type="text" id="q18" placeholder="e.g. Watching someone on my team do something they didn't believe they could do six months ago."/></div>
+
+    <div class="submit-section">
+      <div class="submit-label">Submit Your Answers</div>
+      <div class="submit-note">Sign in with your KMC account above, then click submit — your answers will be saved directly to the KMC Slambook Excel tracker.</div>
+      <button class="submit-btn" id="submitBtn" onclick="handleSubmit()">Submit My Slambook →</button>
+      <div class="error-box" id="errorBox"></div>
+    </div>
+
+    <div class="cta">
+      <h3>Built with <em>KMC Solutions.</em></h3>
+      <div class="cta-rule"></div>
+      <p>Questions? Contact the KMC Social Media Team.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Thank you -->
+<div class="ty" id="tyView">
+  <div class="ty-box">
+    <div class="ty-rule"></div>
+    <div class="ty-label">KMC Solutions · Personal Brand</div>
+    <div class="ty-name" id="tyName"></div>
+    <div class="ty-title">You're done.<br><em>That took courage.</em></div>
+    <div class="ty-sub">Your answers have been saved to the KMC Slambook Excel tracker. The Social Media Team will be in touch soon.</div>
+    <button class="ty-restart" onclick="startOver()">Submit another response</button>
+  </div>
+</div>
+
+<script>
+// ── CONFIG ────────────────────────────────────────────────────────────────────
+const CLIENT_ID  = "cb0b9680-4572-48fb-a813-cb4357e2d2f9";
+const REDIRECT   = "https://kmcsolutions.sharepoint.com/teams/ITlords/Shared%20Documents/kmc_brand_persona_slambook.html";
+const SCOPES     = "Files.ReadWrite User.Read";
+const DRIVE_ID   = "b!-pAUDK2WR0itt1496avTxHtalU9QPTRNmexxclgVyYWlEqR_AQm8S6I9-Qn85MYU";
+const FILE_ID    = "01PA2O5CAITFZEV6R7HZE3O6YXWAG2FKVR";
+const STORAGE_KEY = "kmc-slambook-v3";
+// ─────────────────────────────────────────────────────────────────────────────
+
+let accessToken = null;
+let userEmail   = "";
+let saveTimer   = null;
+
+const TEXT_IDS    = ['q01','q01b','q02','q04','q05','q06','q07','q08','q09','p1','p2','p3','p4','p5','q11','q12','q13','q14','q16','q17','q18'];
+const RADIO_NAMES = ['tot1','tot2','tot3','tot4','tot5','tot6','tot7'];
+const CHECK_IDS   = ['cf1','cf2','cf3','cf4','cf5','cf6','cf7','cf8','cf9','cf10'];
+
+function setSaveDot(state, msg) {
+  document.getElementById('saveDot').className = 'save-dot ' + (state || '');
+  document.getElementById('saveStatus').textContent = msg || '';
+}
+
+function saveAll() {
+  setSaveDot('saving', 'Saving…');
+  const data = {};
+  TEXT_IDS.forEach(id => { data[id] = document.getElementById(id).value; });
+  RADIO_NAMES.forEach(name => { const c = document.querySelector(`input[name="${name}"]:checked`); data[name] = c ? c.value : ''; });
+  CHECK_IDS.forEach(id => { data[id] = document.getElementById(id).checked; });
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); setSaveDot('saved', 'All answers saved automatically'); }
+  catch(e) { setSaveDot('', 'Could not save'); }
+}
+
+function scheduleSync() { clearTimeout(saveTimer); saveTimer = setTimeout(saveAll, 800); }
+
+function loadAll() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) { setSaveDot('', 'Start filling in — answers save automatically'); return; }
+    const data = JSON.parse(raw);
+    TEXT_IDS.forEach(id => { if (data[id] !== undefined) document.getElementById(id).value = data[id]; });
+    RADIO_NAMES.forEach(name => { if (data[name]) { const r = document.querySelector(`input[name="${name}"][value="${data[name]}"]`); if (r) r.checked = true; } });
+    CHECK_IDS.forEach(id => { if (data[id]) document.getElementById(id).checked = true; });
+    setSaveDot('saved', 'Answers restored from last session');
+  } catch(e) { setSaveDot('', 'Start filling in — answers save automatically'); }
+}
+
+function clearAll() {
+  if (!confirm('Clear all your saved answers? This cannot be undone.')) return;
+  TEXT_IDS.forEach(id => document.getElementById(id).value = '');
+  RADIO_NAMES.forEach(name => document.querySelectorAll(`input[name="${name}"]`).forEach(r => r.checked = false));
+  CHECK_IDS.forEach(id => document.getElementById(id).checked = false);
+  try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
+  setSaveDot('', 'Cleared. Start fresh anytime.');
+}
+
+TEXT_IDS.forEach(id => document.getElementById(id).addEventListener('input', scheduleSync));
+RADIO_NAMES.forEach(name => document.querySelectorAll(`input[name="${name}"]`).forEach(r => r.addEventListener('change', scheduleSync)));
+CHECK_IDS.forEach(id => document.getElementById(id).addEventListener('change', scheduleSync));
+loadAll();
+
+// ── MS Auth ───────────────────────────────────────────────────────────────────
+function handleAuth() {
+  if (accessToken) { signOut(); return; }
+  const params = new URLSearchParams({
+    client_id: CLIENT_ID,
+    response_type: 'token',
+    redirect_uri: REDIRECT,
+    scope: SCOPES,
+    response_mode: 'fragment',
+    prompt: 'select_account'
+  });
+  const popup = window.open(`https://login.microsoftonline.com/common/oauth2/v2.0/authorize?${params}`, 'msauth', 'width=480,height=640,left=200,top=100');
+  if (!popup) { alert('Pop-up was blocked. Please allow pop-ups for this page and try again.'); return; }
+  const timer = setInterval(() => {
+    try {
+      if (!popup || popup.closed) { clearInterval(timer); return; }
+      const hash = popup.location.hash;
+      if (hash && hash.includes('access_token')) {
+        clearInterval(timer); popup.close();
+        const p = new URLSearchParams(hash.slice(1));
+        accessToken = p.get('access_token');
+        if (accessToken) fetchUserInfo();
+        else showAuthError('Could not retrieve access token. Please try again.');
+      }
+      if (hash && hash.includes('error=')) {
+        clearInterval(timer); popup.close();
+        const p = new URLSearchParams(hash.slice(1));
+        showAuthError('Sign-in error: ' + (p.get('error_description') || p.get('error')));
+      }
+    } catch(e) {}
+  }, 500);
+}
+
+function showAuthError(msg) {
+  document.getElementById('authStatus').innerHTML = `<span style="color:#c0392b">${msg}</span>`;
+}
+
+async function fetchUserInfo() {
+  try {
+    const res = await fetch('https://graph.microsoft.com/v1.0/me', { headers: { Authorization: `Bearer ${accessToken}` } });
+    if (!res.ok) throw new Error('Graph /me returned ' + res.status);
+    const u = await res.json();
+    userEmail = u.mail || u.userPrincipalName || u.displayName || 'KMC User';
+    document.getElementById('authStatus').innerHTML = `Signed in as <strong>${userEmail}</strong> — ready to submit.`;
+    const btn = document.getElementById('authBtn');
+    btn.textContent = '✓ Connected — Sign Out';
+    btn.className = 'msft-btn connected';
+  } catch(e) { accessToken = null; showAuthError('Could not fetch user info. Please sign in again.'); }
+}
+
+function signOut() {
+  accessToken = null; userEmail = '';
+  document.getElementById('authStatus').textContent = 'Sign in with your KMC Microsoft account to submit responses to the shared Excel tracker.';
+  const btn = document.getElementById('authBtn');
+  btn.textContent = '⊞ Sign in with Microsoft';
+  btn.className = 'msft-btn';
+}
+
+// ── Collect answers ───────────────────────────────────────────────────────────
+function getRow() {
+  const g   = id => document.getElementById(id).value.trim() || '';
+  const tot = n  => { const c = document.querySelector(`input[name="${n}"]:checked`); return c ? c.value : ''; };
+  const fl  = ['Short punchy takes','Storytelling / narrative','Educational / how-to','Opinionated takes','Behind-the-scenes','Motivational / inspirational','Data / facts-led','Video scripts / podcast','Q&A / interview style','Thought leadership / long-form'];
+  const fmts = [];
+  for (let i = 1; i <= 10; i++) { const e = document.getElementById('cf'+i); if (e && e.checked) fmts.push(fl[i-1]); }
+  return [
+    new Date().toLocaleString('en-PH', { timeZone: 'Asia/Manila' }),
+    g('q01'), g('q01b'), g('q02'),
+    tot('tot1'), tot('tot2'), tot('tot3'), tot('tot4'), tot('tot5'), tot('tot6'), tot('tot7'),
+    g('q04'), g('q05'), g('q06'), g('q07'),
+    g('q08'), g('q09'),
+    g('p1'), g('p2'), g('p3'), g('p4'), g('p5'),
+    g('q11'), g('q12'), g('q13'), g('q14'),
+    fmts.join(', '),
+    g('q16'), g('q17'), g('q18')
+  ];
+}
+
+// ── Submit to Excel ───────────────────────────────────────────────────────────
+async function handleSubmit() {
+  const name = document.getElementById('q01').value.trim();
+  if (!name) { alert('Please fill in your full name and title (Q01) before submitting.'); document.getElementById('q01').focus(); return; }
+  if (!accessToken) { alert('Please sign in with your KMC Microsoft account first (see the bar at the top).'); return; }
+
+  const btn      = document.getElementById('submitBtn');
+  const errorBox = document.getElementById('errorBox');
+  errorBox.style.display = 'none';
+  btn.disabled = true; btn.textContent = 'Submitting to Excel…';
+
+  const row     = getRow();
+  const headers = { Authorization: `Bearer ${accessToken}`, 'Content-Type': 'application/json' };
+  const base    = `https://graph.microsoft.com/v1.0/drives/${DRIVE_ID}/items/${FILE_ID}/workbook/worksheets/Responses`;
+
+  // Strategy 1: append to table
+  try {
+    const tablesRes  = await fetch(`${base}/tables`, { headers });
+    const tablesData = await tablesRes.json();
+    if (tablesRes.ok && tablesData.value && tablesData.value.length > 0) {
+      const tableId   = tablesData.value[0].id;
+      const appendRes = await fetch(`${base}/tables/${tableId}/rows/add`, {
+        method: 'POST', headers, body: JSON.stringify({ values: [row] })
+      });
+      if (!appendRes.ok) throw new Error(`Table append failed (${appendRes.status})`);
+      onSuccess(name); return;
+    }
+  } catch(e) { console.warn('Table strategy failed, trying range:', e.message); }
+
+  // Strategy 2: write to next empty row
+  try {
+    const rangeRes  = await fetch(`${base}/usedRange`, { headers });
+    if (!rangeRes.ok) throw new Error('Could not read usedRange: ' + rangeRes.status);
+    const rangeData = await rangeRes.json();
+    const nextRow   = (rangeData.rowCount || 1) + 1;
+    const patchRes  = await fetch(`${base}/range(address='A${nextRow}:AD${nextRow}')`, {
+      method: 'PATCH', headers, body: JSON.stringify({ values: [row] })
+    });
+    if (!patchRes.ok) { const txt = await patchRes.text(); throw new Error(`Range write failed (${patchRes.status}): ${txt}`); }
+    onSuccess(name);
+  } catch(e2) {
+    errorBox.style.display = 'block';
+    errorBox.textContent = 'Submission failed. Make sure you are signed in with a KMC account that has edit access to the tracker. Error: ' + e2.message;
+    btn.disabled = false; btn.textContent = 'Submit My Slambook →';
+  }
+}
+
+function onSuccess(name) {
+  try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
+  document.getElementById('formView').style.display = 'none';
+  document.getElementById('tyView').style.display   = 'block';
+  document.getElementById('tyName').textContent     = name;
+  window.scrollTo(0, 0);
+}
+
+function startOver() {
+  document.getElementById('tyView').style.display   = 'none';
+  document.getElementById('formView').style.display = 'block';
+  window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>
