@@ -220,7 +220,7 @@ input.sm{max-width:260px;}
 <script>
 // ── CONFIG ────────────────────────────────────────────────────────────────────
 const CLIENT_ID  = "cb0b9680-4572-48fb-a813-cb4357e2d2f9";
-const REDIRECT   = "https://kmcsolutions.sharepoint.com/teams/ITlords/Shared%20Documents/kmc_brand_persona_slambook.html";
+const REDIRECT   = "https://jupiterng.github.io/kmc-slambook/";
 const SCOPES     = "Files.ReadWrite User.Read";
 const DRIVE_ID   = "b!-pAUDK2WR0itt1496avTxHtalU9QPTRNmexxclgVyYWlEqR_AQm8S6I9-Qn85MYU";
 const FILE_ID    = "01PA2O5CAITFZEV6R7HZE3O6YXWAG2FKVR";
@@ -289,7 +289,7 @@ function handleAuth() {
     response_mode: 'fragment',
     prompt: 'select_account'
   });
-  const popup = window.open(`https://login.microsoftonline.com/common/oauth2/v2.0/authorize?${params}`, 'msauth', 'width=480,height=640,left=200,top=100');
+  const popup = window.open(`https://login.microsoftonline.com/c3435bea-c1d5-42d3-9288-7387a8459771/oauth2/v2.0/authorize?${params}`, 'msauth', 'width=480,height=640,left=200,top=100');
   if (!popup) { alert('Pop-up was blocked. Please allow pop-ups for this page and try again.'); return; }
   const timer = setInterval(() => {
     try {
